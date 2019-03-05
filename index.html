@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,18 +12,25 @@
     <meta name="renderer" content="webkit">
     <title>贵州驭浪科技有限公司</title>
     <meta name="Keywords" content="贵州驭浪科技,驭浪网络,驭浪科技,趣网商城" />
-    <meta name="Description" content="贵州驭浪科技有限公司，是由自然人独资的科技有限公司，投资100万元成立的一家集研发、设计、制造、销售、服务于一体的,专注于软件开发、电商平台、人工智能、虚拟技术、无人机体系、3D打印、组织层造皮、纳米机器人技术的高新科技企业" />
+    <meta name="Description" content="贵州驭浪科技有限公司，是由自然人独资的科技有限公司，投资100万元成立的一家集研发、设计、制造、销售、服务于一体的,专注于软件开发、电商平台、人工智能、虚拟技术、无人机物流体系、3D打印、组织层造皮、纳米机器人技术的高新科技企业" />
     <link rel="icon" href="favicon.ico">
     <link rel="dns-prefetch" href="//s.dddua.com" />
     <link href="static/css/home.css" rel="stylesheet" type="text/css" />
     <link href="static/css/my.css" rel="stylesheet" type="text/css" />
     <!-- <link href="static/css/style.css" rel="stylesheet" type="text/css" /> -->
+	 <style type="text/css">
+        #itemMenus li{
+            line-height: 35px;
+        }
+    </style>
     <script>
     if (/android|b(b\d+|lackberry|ada\/)|m(eego|obile|QQBrowser|tk)|ma(te|ui|xo)|ip(hone|ad)|uc(web|Browser)|UNTRUSTED|H(UAWEI|aier|d\/|s\-)|j(2me|ava|uc)|Samsung|oppo|opera m(ob|in)i|play(book|station)|KTOUCH|nokia|w(ap|indows CE)|kindle|lenovo|xiaomi|s(ony|MART-TV)|zte\-|3gpp-gba|pad|ht(c(\-| |_|a|g|p|s|t)|tp)|Linux; U;/i.test(navigator.userAgent)) {
         document.write('<link href="static/css/wap.css" rel="stylesheet" type="text/css" />');
     }
     </script>
     <!--[if lt IE 10]>
+    <!--接口配置定义加载-->
+    <script src="config.js"></script>
 <script>
 if(confirm("对不起您的浏览器版本过低，请使用谷歌、火狐、360、百度、QQ、猎豹或IE10+浏览器"))
  {
@@ -41,7 +48,8 @@ if(confirm("对不起您的浏览器版本过低，请使用谷歌、火狐、36
             	<a href="javascript:;" class="nava">首页</a>
             	<a href="about.html" class="nava" target="_blank">关于我们</a>
             	<a href="project.html" class="nava" target="_blank">公司项目</a>
-            	<a href="news.html" class="nava" target="_blank">公司动态</a>
+            	<a href="news.html" class="nava" target="_blank" onmouseover="showMenu(this)">公司动态</a>
+
             	<!-- <a href="/album" class="nava" target="_blank">相册</a> -->
             	<a href="job.html" class="nava" target="_blank">诚聘英才</a>
             	<a href="contact.html" class="nava" target="_blank">联系我们</a>
@@ -58,6 +66,7 @@ if(confirm("对不起您的浏览器版本过低，请使用谷歌、火狐、36
                     <li id="menu-item-74" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-74"><a href="about.html" class="nava" target="_self">关于我们</a></li>
                     <li id="menu-item-73" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-34 current_page_item menu-item-73"><a href="project.html" class="nava" target="_self">公司项目</a></li>
                     <li id="menu-item-73" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-34 current_page_item menu-item-73"><a href="news.html" class="nava" target="_self">公司动态</a></li>
+
                     <li id="menu-item-71" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71"><a href="job.html" class="nava" target="_self">诚聘英才</a></li>
                     <li id="menu-item-381" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-381"><a href="contact.html" class="nava" target="_self">联系我们</a></li>
                 </ul>
@@ -252,6 +261,9 @@ if(confirm("对不起您的浏览器版本过低，请使用谷歌、火狐、36
         <li><a href="javascript:;"><i>7</i></a></li>
         <li><a href="javascript:;"><i>8</i></a></li>
     </ul>
+	<div id="itemMenus" style="display: none;height: 220px;width: 70px;background-color: rgba(39,159,225,0.2);font-size: 14px;text-align: center;color: #FFFFFF" onmouseleave="menuHide()">
+        
+    </div>
     <div id="map" class="map">
         <iframe width="700" height="400" scrolling="no" id="mapf" frameborder="0"></iframe>
         <p class="mt10 alC">贵州市渝中区大溪沟远见中心9楼 ,传真/电话: 023-62805799，邮箱: vip@Yulang.cc</p>
@@ -259,5 +271,44 @@ if(confirm("对不起您的浏览器版本过低，请使用谷歌、火狐、36
     </div>
     <script type="text/javascript" src="static/js/jquery.min.js"></script>
     <script type="text/javascript" src="static/js/home15.js"></script>
+	<script type="text/javascript">
+   $(function() {
+    $("#itemMenus").empty();
+        getNewsData(0);
+    })
+    function showMenu(ele) {
+        if(ele){
+            $("#itemMenus").show();
+            $("#itemMenus").offset({top:$(ele).offset().top+60, left: $(ele).offset().left-8 });
+
+         //   alert(unescape("\u5408\u4f5c\u4f19\u4f34".replace(/\\u/gi,'%u')));
+        }
+    }
+
+    function menuHide() {
+        $("#itemMenus").hide();
+    }
+    function getNewsData(id) {
+         $.ajax({
+            type:"GET",
+            url:"http://hyu6209260001.my3w.com/public/index/api/active_type_api",
+            success:function(data){
+                console.info(JSON.parse(data))
+                var datas=JSON.parse(data);
+                var html="<ul>";
+               for (i=0;i<datas.length;i++){
+                         html+="<li class='subli'>"+datas[i].name+"</li>"
+               }
+			   html+="</ul>"
+               $("#itemMenus").append(html);
+            },
+            error:function(){
+                console.log("Error: ");
+            }
+        });
+
+    }
+
+</script>
 </body>
 </html>
