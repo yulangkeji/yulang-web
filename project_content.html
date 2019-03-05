@@ -22,6 +22,7 @@
         document.write('<link href="static/css/wap.css" rel="stylesheet" type="text/css" />');
     }
     </script>
+    <script src="config.js"></script>
 </head>
 
 <body>
@@ -51,9 +52,7 @@
         <div class="abl left">
             <img id="project_img" class="pro-shui" src="">
         </div>
-        <div class="abr right newdes pro-text-shui">
-            <p id="content"></p>
-            <p>&nbsp;</p>
+        <div class="abr right newdes pro-text-shui" id="content">
         </div>
         <div class="clear"></div>
         <p class="lh35">&nbsp;</p>
@@ -80,34 +79,39 @@
     <script type="text/javascript" src="static/js/com.js"></script>
     <script type="text/javascript" src="static/js/json.js"></script>
     <script>
-    var title = document.getElementById("headline");
-    var title_2 = document.getElementById("headline_2");
-    var content = document.getElementById("content");
-    var pro_img = document.getElementById("project_img");
-    var url = window.location.search;
-    var project = url.substring(4);
-    // console.log(data.ysjcpt.title);
-
-    switch(project) {
-     case "ysjcpt":
-        title.innerHTML = data.ysjcpt.title;
-        title_2.innerHTML = data.ysjcpt.title;
-        content.innerHTML = data.ysjcpt.text;
-        pro_img.src = data.ysjcpt.image;
-       break;
-     case "appzh":
-        title.innerHTML = data.appzh.title;
-        title_2.innerHTML = data.appzh.title;
-        content.innerHTML = data.appzh.text;
-        pro_img.src = data.appzh.image;
-       break;
-     case "zzczp":
-        title.innerHTML = data.zzczp.title;
-        title_2.innerHTML = data.zzczp.title;
-        content.innerHTML = data.zzczp.text;
-        pro_img.src = data.zzczp.image;
-       break;
-    }
+        function getQueryString(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
+        var project_id = getQueryString("id");
+        //获取指定公司项目
+        function getProjectData() {
+            $.ajax({
+                async: false,
+                type: "get",
+                url: host + api_project + "?id=" + project_id,
+                data: {},
+                success: function(msg) {
+                    var project_data = JSON.parse(msg);
+                    console.log(project_data);
+                    $('#headline').html(project_data.title);
+                    $('#headline_2').html(project_data.title);
+                    $('#content').html(project_data.content);
+                    $('#project_img').attr('src', host + upload_url + project_data.img);
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    alert("请求失败，请刷新！");
+                }
+            });
+        }
+        $(document).ready(function(e) {
+            // 加载项目信息列表
+            getProjectData();
+        });
      </script>
 </body>
 

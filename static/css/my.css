@@ -23,6 +23,24 @@
     height: 180px;
 }
 
+.item-menu {
+    display: none;
+    position: relative;
+    width: 70px;
+    height: 100%;
+    font-size: 14px;
+    background-color: rgba(39,159,225,0.2);
+    text-align: center;
+    color: #FFF;
+    z-index:999;
+}
+
+.item-menu li{
+    list-style: none;
+    line-height: 35px;
+}
+
+
 @media (min-width:720px) {
 
 }
