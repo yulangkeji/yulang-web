@@ -1,0 +1,15 @@
+﻿@media (max-width: 720px){
+a.logo{display:none;}
+.top .en{display:none;}
+.menu{float:none;margin:0;height:60px; white-space:nowrap;width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;font-size:0;}
+.menu li{display:inline-block;white-space:normal;color:#222;overflow:hidden;font-size:14px;float:none;}
+
+.tbg2{padding:80px 20px 20px 20px;width:auto;line-height:20px;}
+#filters{width:100%;}
+.fbiao, .fbiao a{margin-top:10px;}
+.wp, .content{max-width:640px;margin:0 auto;width:100%;}
+.newdes{padding:10px;}
+.entry-content{width:100%;}
+.entry-content img{max-width:100%;height:auto;}
+#footer{display:none;}
+}
