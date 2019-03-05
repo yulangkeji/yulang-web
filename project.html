@@ -21,6 +21,8 @@
         document.write('<link href="static/css/wap.css" rel="stylesheet" type="text/css" />');
     }
     </script>
+    <script src="config.js"></script>
+    <script src="static/js/my.js"></script>
 </head>
 
 <body>
@@ -238,8 +240,38 @@
             waterfall();
         }
     });
+    //获取公司项目
+    function getProjectData() {
+        $.ajax({
+            async: false,
+            type: "get",
+            url: host + api_project,
+            data: {},
+            success: function(msg) {
+                var data = JSON.parse(msg);
+                console.log(data);
+                var html = '';
+                for (i = 0; i < data.length; i++){
+                    var item = data[i];
+                    html += '<a ' + (item.type == 0 ? ' href="project_content.html?id=' + item.id + '"': 'vurl="'+ item.path +'"') + '" title="'+ item.title +'" class="newa pro-item">' +
+                        '                <p><img alt="'+ item.title +'" class="yapb_thumbnail lazy pro-img" src="'+ host + upload_url + item.img +'" /></p>' +
+                        '                <h3>'+ item.title + '</h3>' +
+                        '                <span class="blue"></span>' +
+                        '</a>';
+                }
+
+                $('#container').html(html);
+                waterfall();
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                alert("请求失败，请刷新！");
+            }
+        });
+    }
     $(document).ready(function(e) {
-        waterfall();
+        // 加载项目信息列表
+        getProjectData();
+        // waterfall();
     });
     </script>
     <script>
@@ -258,8 +290,6 @@
 
             $(location).attr('href', 'project_desc_view.html');
         });
-
-
     })
 
     </script>

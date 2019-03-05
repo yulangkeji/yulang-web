@@ -31,6 +31,7 @@
     <!--[if lt IE 10]>
     <!--接口配置定义加载-->
     <script src="config.js"></script>
+    <script src="static/js/my.js"></script>
 <script>
 if(confirm("对不起您的浏览器版本过低，请使用谷歌、火狐、360、百度、QQ、猎豹或IE10+浏览器"))
  {
@@ -272,9 +273,12 @@ if(confirm("对不起您的浏览器版本过低，请使用谷歌、火狐、36
     <script type="text/javascript" src="static/js/jquery.min.js"></script>
     <script type="text/javascript" src="static/js/home15.js"></script>
 	<script type="text/javascript">
-   $(function() {
-    $("#itemMenus").empty();
+    $(function() {
+        $("#itemMenus").empty();
         getNewsData(0);
+
+        // 加载首页幻灯片
+        // getIndexData();
     })
     function showMenu(ele) {
         if(ele){
@@ -291,7 +295,7 @@ if(confirm("对不起您的浏览器版本过低，请使用谷歌、火狐、36
     function getNewsData(id) {
          $.ajax({
             type:"GET",
-            url:"http://hyu6209260001.my3w.com/public/index/api/active_type_api",
+            url: host + api_active_type,
             success:function(data){
                 console.info(JSON.parse(data))
                 var datas=JSON.parse(data);
